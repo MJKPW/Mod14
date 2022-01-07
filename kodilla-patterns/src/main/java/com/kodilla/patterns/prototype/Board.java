@@ -4,17 +4,25 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public final class Board {
+public final class Board extends Prototype<Board> {
 
-    private final String name;
-    private final Set<TasksList> lists = new HashSet<>();
+    private String name;
+    private Set<TasksList> lists = new HashSet<>();
 
     public Board(String name) {
         this.name = name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setLists(Set<TasksList> lists) {
+        this.lists = lists;
     }
 
     public Set<TasksList> getLists() {
@@ -28,6 +36,23 @@ public final class Board {
             s = s + list.toString() + "\n";
         }
         return s;
+    }
+
+    public Board shallowCopy() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    public Board deepCopy() throws CloneNotSupportedException {
+        Board clonedBoard = super.clone();
+        clonedBoard.lists = new HashSet<>();
+        for (TasksList theList : lists) {
+            TasksList clonedList = new TasksList(theList.getName());
+            for (Task task : theList.getTasks()) {
+                clonedList.getTasks().add(task);
+            }
+            clonedBoard.getLists().add(clonedList);
+        }
+        return clonedBoard;
     }
 
     @Override
