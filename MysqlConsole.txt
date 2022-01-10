@@ -126,7 +126,7 @@ INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
 VALUES(3, 'make', 'make travel arrangements', 2);
 
 INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
-VALUES(3, 'troubleshoot', 'troubleshoot problems', 4);
+VALUES(3, 'troubleshoot', 'troubleshoot problems', 4);git
 
 INSERT INTO ISSUES(ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO)
 VALUES(3, 'prepare', 'prepare meeting agendas', 5);
