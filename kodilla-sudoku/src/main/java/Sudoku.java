@@ -74,17 +74,24 @@ public class Sudoku {
 
     public void start() {
         setUp();
+        boolean status = true;
         while(true) {
             System.out.println("Pick Row, Column, Value or d to delete, q to quit, SUDOKU to solve");
             String row = player.next();
-            if(row.equals("q") || row.equals("SUDOKU"))
+            if(row.equals("q") || row.equals("SUDOKU")) {
+                status = solve(board);
                 break;
+            }
             String column = player.next();
-            if(column.equals("q")|| column.equals("SUDOKU"))
+            if(column.equals("q")|| column.equals("SUDOKU")) {
+                status = solve(board);
                 break;
+            }
             String value = player.next();
-            if(value.equals("q") || value.equals("SUDOKU"))
+            if(value.equals("q") || value.equals("SUDOKU")) {
+                status = solve(board);
                 break;
+            }
             try {
                 int r = Integer.parseInt(row);
                 int c = Integer.parseInt(column);
@@ -121,7 +128,14 @@ public class Sudoku {
                 break;
             }
         }
-        System.out.println(solvedBoard);
+        if(status) {
+            System.out.println("Found solution:");
+            System.out.println(board);
+        } else {
+            System.out.println("No solution. Initial solution: ");
+            System.out.println(solvedBoard);
+        }
+
     }
 
     public Board getBoard() {
