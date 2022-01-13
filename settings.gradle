@@ -4,4 +4,6 @@ include 'kodilla-spring'
 include 'kodilla-patterns'
 include 'kodilla_jdbc'
 include 'com.kodilla.jdbc'
+include 'kodilla-sudoku'
+include 'kodilla-sudoku'
 
