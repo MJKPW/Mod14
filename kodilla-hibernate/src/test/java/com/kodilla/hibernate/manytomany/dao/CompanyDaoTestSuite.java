@@ -101,9 +101,9 @@ class CompanyDaoTestSuite {
         companyDao.save(softwareMachine);
         companyDao.save(dataMaesters);
         companyDao.save(greyMatter);
-        List<Company> returned = companyDao.findByFirstThreeLetters("Gre");
+        List<Company> returned = companyDao.findByFirstThreeLetters("Dat");
         //Then
-        Assertions.assertEquals(0, returned.size());
+        Assertions.assertEquals(1, returned.size());
         //CleanUp
         try {
             employeeDao.deleteById(softwareMachine.getId());
