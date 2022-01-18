@@ -5,6 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@NamedQuery(name = "Company.findByFirstThreeLetters",
+                  query = "FROM Company" +
+                          " WHERE SUBSTR(name, 0, 3) = :name")
 @Entity
 @Table(name = "COMPANIES")
 public class Company {
@@ -46,7 +50,7 @@ public class Company {
         return employees;
     }
 
-    public void setEmployees(List<Employee> employes) {
-        this.employees = employes;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -2,9 +2,13 @@ package com.kodilla.hibernate.manytomany.dao;
 
 import com.kodilla.hibernate.manytomany.Company;
 import com.kodilla.hibernate.manytomany.Employee;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -13,6 +17,9 @@ class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -51,12 +58,59 @@ class CompanyDaoTestSuite {
         assertNotEquals(0, greyMatterId);
 
         //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
+    public void findEmployeeByLastNameTest() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+        //When
+        employeeDao.save(johnSmith);
+        employeeDao.save(stephanieClarckson);
+        employeeDao.save(lindaKovalsky);
+        List<Employee> returned = employeeDao.findByLastName("Kovalsky");
+        //Then
+        Assertions.assertEquals("Linda", returned.get(0).getFirstname());
+        Assertions.assertEquals("Kovalsky", returned.get(0).getLastname());
+        //CleanUp
+        try {
+            employeeDao.deleteById(johnSmith.getId());
+            employeeDao.deleteById(stephanieClarckson.getId());
+            employeeDao.deleteById(lindaKovalsky.getId());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void findCompaniesByFirstThreeLetters() {
+        //Given
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+        //When
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        List<Company> returned = companyDao.findByFirstThreeLetters("Gre");
+        //Then
+        Assertions.assertEquals(0, returned.size());
+        //CleanUp
+        try {
+            employeeDao.deleteById(softwareMachine.getId());
+            employeeDao.deleteById(dataMaesters.getId());
+            employeeDao.deleteById(greyMatter.getId());
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 }
