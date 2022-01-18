@@ -21,7 +21,7 @@ public class Invoice {
 
     @Id
     @NotNull
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "ID", unique = true)
     public int getId() {
         return id;

@@ -30,7 +30,7 @@ public class Product {
     }
 
     @NotNull
-    @Column(name="PRODUCT-NAME", unique = true)
+    @Column(name="NAME", unique = true)
     public String getName() {
         return name;
     }
