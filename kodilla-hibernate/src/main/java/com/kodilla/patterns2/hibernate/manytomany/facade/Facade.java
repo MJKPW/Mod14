@@ -7,6 +7,8 @@ import com.kodilla.patterns2.hibernate.manytomany.dao.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class Facade {
 
@@ -19,14 +21,12 @@ public class Facade {
         this.companyDao = companyDao;
     }
 
-    public Employee findEmployee(String sub) {
-        return employeeDao.findEmployeeBySub(sub)
-                          .orElseThrow(()->new NotFoundException("Employee"));
+    public List<Employee> findEmployee(String sub) {
+        return employeeDao.findEmployeeBySub(sub);
     }
 
-    public Company findCompany(String sub) {
-        return companyDao.findCompanyBySubstring(sub)
-                         .orElseThrow(()->new NotFoundException("Company"));
+    public List<Company> findCompany(String sub) {
+        return companyDao.findCompanyBySubstring(sub);
     }
 
 }

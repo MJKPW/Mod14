@@ -21,9 +21,9 @@ class FacadeTest {
         //Given
         String substring = "Maeo";
         //When
-        Company companies = facade.findCompany(substring);
+        List<Company> companies = facade.findCompany(substring);
         //Then
-        assertEquals(129, companies.getId());
+        assertEquals(1, companies.size());
     }
 
     @Test
@@ -31,23 +31,9 @@ class FacadeTest {
         //Given
         String substring = "Fre";
         //When
-        Employee employees = facade.findEmployee(substring);
+        List<Employee> employees = facade.findEmployee(substring);
         //Then
-        assertEquals(45, employees.getId());
-    }
-
-    @Test
-    public void testNotFound() {
-        //Given
-        String substring = "X";
-        //When
-        //Then
-        assertThrows(NotFoundException.class, () -> {
-           facade.findEmployee(substring);
-        });
-        assertThrows(NotFoundException.class, () -> {
-            facade.findCompany(substring);
-        });
+        assertEquals(1, employees.size());
     }
 
 }
