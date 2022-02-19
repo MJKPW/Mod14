@@ -5,3 +5,8 @@ include 'kodilla-patterns'
 include 'com.kodilla.jdbc'
 include 'kodilla-sudoku'
 include 'kodilla-patterns2'
+include 'com.kodilla.jdbc:kodilla-testing2'
+findProject(':com.kodilla.jdbc:kodilla-testing2')?.name = 'kodilla-testing2'
+include 'kodilla-testing2'
+include 'kodilla-testing2'
+

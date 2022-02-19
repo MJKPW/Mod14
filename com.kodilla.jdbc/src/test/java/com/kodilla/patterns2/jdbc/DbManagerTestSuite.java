@@ -68,4 +68,5 @@ public class DbManagerTestSuite {
         dbManager.getConnection().close();
         assertEquals(1, count);
     }
+
 }
